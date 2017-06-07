@@ -65,13 +65,9 @@
   // check for error
   if (!$conn) { die("Could not connect: " . mysqli_error()); }
 
-  echo "<p>no errors.</p>";
-
   // get fields submitted from form by post method
   $providedUsername = $_POST["username"];
   $providedPassword = $_POST["password"];
-
-  echo "received: <br><br><br><br><br><br><br>" . $_POST["username"] . $_POST["password"];
 
   // get the username - password combinations from the proj_Users table in the database
   $query = "SELECT username, pword FROM proj_Users;";
@@ -84,8 +80,6 @@
   // the provided username - password combination, and try to find match in associative array
   $exists = false;
 
-  echo "<p>Entering the while loop now.</p>";
-/*
   while ($row = mysqli_fetch_row($result)) {
     if ($row[0] === $providedUsername) {
       if ($row[1] === $providedPassword) {
@@ -94,8 +88,6 @@
       }
     }
   }
-*/
-  echo "<p>At the end of the while loop, exists is: " . $exists . "</p>";
 
   // free result set
   mysqli_free_result($result);
@@ -103,11 +95,15 @@
   // close connection
   mysqli_close($conn);
 
+  // print outer card containing the login results
+  echo "<div class='loginresult-contentContainer'>";
+    echo "<div class='loginresult-contentCard mdl-shadow--8dp'>";
+      echo "<div class='loginresult-content'>";
 
   // print outcome and possibly set login cookie depending on whether the username - password combo exists
   if ($exists == true) {
     echo "<p>Welcome " . $providedUsername . ", you have been logged in successfully.</p>";
-    setcookie("colorlearn2017", $providedUsername, time() + 86400, "/");
+    setcookie("learncards2017", $providedUsername, time() + 86400, "/");
     echo "<p><a href='homescreen.php'>Continue to home screen</a></p>";
   } else {
     echo "<p>Sorry, that username and password combination was not found in the database.</p>";
@@ -115,6 +111,11 @@
     echo "<br><br>";
     echo "<p><a href='welcome.php'>Back to welcome page</a></p>";
   }
+
+  // close the content containers
+      echo "</div>";
+    echo "</div>";
+  echo "</div>";
 ?>
 
 </body>

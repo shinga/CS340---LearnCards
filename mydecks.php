@@ -75,7 +75,7 @@
   $thisuser = "pokemonmaster";
 
   // form the query
-  $query = "SELECT cFront, cBack, cLanguage FROM proj_Card C WHERE C.creator='" . $thisuser . "';";
+  $query = "SELECT dName AS 'Deck Name', dDesc AS 'Deck Description', dLanguage AS 'Deck Language' FROM proj_Deck  WHERE creator='" . $thisuser . "';";
 
   // get result from querying the database`
   $result = mysqli_query($conn, $query);
@@ -85,7 +85,7 @@
 
   // display all cards belonging to this user
   echo "<div class='mycards-title'>";
-    echo "<h4><em>" . $thisuser . "'s Cards</em></h4>";
+    echo "<h4><em>" . $thisuser . "'s Decks</em></h4>";
   echo "</div>";
   echo "<div class='mycards-table'>";
 
