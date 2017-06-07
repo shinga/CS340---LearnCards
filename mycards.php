@@ -73,7 +73,7 @@
   $thisuser = "pokemonmaster";
 
   // form the query
-  $query = "SELECT cID, cFront, cBack, creator, cLanguage FROM proj_Card WHERE creator='" . $thisuser . "';";
+  $query = "SELECT cFront, cBack, cLanguage FROM proj_Card C WHERE C.creator='" . $thisuser . "';";
 
   // get result from querying the database`
   $result = mysqli_query($conn, $query);
@@ -82,9 +82,11 @@
   if (!$result) { die("Failed to fetch fields from table."); }
 
   // display all cards belonging to this user
-  echo "<div class=mycards-title>";
+  echo "<div class='mycards-title'>";
     echo "<h4><em>" . $thisuser . "'s Cards</em></h4>";
   echo "</div>";
+  echo "<div class='mycards-table'>";
+
   echo "<table>";
 
     // echo headers
@@ -102,6 +104,7 @@
     }
 
   echo "</table>";
+  echo "</div>";
 
   // free resources
   mysqli_free_result($result);
