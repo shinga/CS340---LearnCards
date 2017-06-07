@@ -49,7 +49,7 @@
 
 <!-- content -->
 
-<?php
+<?php /*
   // include the database connection information
   include "connect.php";
 
@@ -111,7 +111,7 @@
     echo "<p>Sign up for a new account on the sign up page: <a href='signup.php'>Sign up</a></p>";
     echo "<br><br>";
     echo "<p><a href='welcome.php'>Back to welcome page</a></p>";
-  }
+  } */
 ?>
 
 </body>
