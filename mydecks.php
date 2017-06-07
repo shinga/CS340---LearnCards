@@ -72,51 +72,45 @@
   if (!$conn) { die("Could not connect: " . mysqli_error()); }
 
   // store the logged in user's username in a variable
-  var thisuser = $_COOKIE["learncards2017"];
+  $thisuser = "pokemonmaster";
 
   // form the query
-  $query = "SELECT dID, dName, dDesc, dAccess, dLanguage, creator FROM proj_Deck WHERE creator = '" .
-           thisuser . "'";;
+  $query = "SELECT cFront, cBack, cLanguage FROM proj_Card C WHERE C.creator='" . $thisuser . "';";
 
-  // get result from querying the database
+  // get result from querying the database`
   $result = mysqli_query($conn, $query);
 
   // check for error
   if (!$result) { die("Failed to fetch fields from table."); }
 
-  // display all decks belonging to the current user, in card layout if time
+  // display all cards belonging to this user
+  echo "<div class='mycards-title'>";
+    echo "<h4><em>" . $thisuser . "'s Cards</em></h4>";
+  echo "</div>";
+  echo "<div class='mycards-table'>";
 
+  echo "<table>";
 
+    // echo headers
+    for ($i = 0; $i < mysqli_num_fields($result); $i++) {
+      $field = mysqli_fetch_field($result);
+      echo "<td><b>{$field->name}</b></td>";
+    }
 
+    // echo rows
+    while ($row = mysqli_fetch_row($result)) {
+      // one row at a time
+      echo "<tr>";
+      foreach ($row as $cell) { echo "<td>$cell</td>"; }
+      echo "</tr>";
+    }
 
-  // sample - users
-  echo "<h2>Users</h2>";
-
-  echo "<table border='1'><tr>";
-
-  for ($i = 0; $i < mysqli_num_fields($result); $i++) {
-
-    $field = mysqli_fetch_field($result);
-    echo "<td><b>{$field->name}</b></td>";
-
-  }
-
-  while ($row = mysqli_fetch_row($result)) {
-
-    echo "<tr>";
-    foreach ($row as $cell) { echo "<td>$cell</td>"; }
-    echo "</tr>";
-
-  }
-
-
-
+  echo "</table>";
+  echo "</div>";
 
   // free resources
   mysqli_free_result($result);
   mysqli_close($conn);
-
-  echo "</pre>";
 ?>
 
 
