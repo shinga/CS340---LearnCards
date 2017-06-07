@@ -1,6 +1,5 @@
 <html>
 <head>
-
   <meta charset="utf-8">
 
   <meta name="robots" content="noindex,nofollow,noodp,noarchive,nosnippet">
@@ -42,7 +41,7 @@
     </div>
     <div class="headerCardTitle mdl-shadow--8dp">
       <div class="headerCardTitleText">
-        <em><h4>Log In</h4></em>
+        <em><h4>Log In Result</h4></em>
       </div>
     </div>
   </div>
@@ -60,6 +59,8 @@
   ini_set("display_errors", 1);
   error_reporting(E_ALL);
 
+  echo "<p>In progress.</p>";
+
   // set up the database connection object
   $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
@@ -71,7 +72,7 @@
   $providedPassword = $_POST["password"];
 
   // get the username - password combinations from the proj_Users table in the database
-  $query = "SELECT DISTINCT username, pword FROM proj_Users";
+  $query = "SELECT username, pword FROM proj_Users";
   $result = mysqli_query($conn, $query);
 
   // check for error
