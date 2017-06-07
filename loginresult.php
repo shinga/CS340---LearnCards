@@ -49,7 +49,7 @@
 
 <!-- content -->
 
-<?php /*
+<?php
   // include the database connection information
   include "connect.php";
 
@@ -59,31 +59,33 @@
   ini_set("display_errors", 1);
   error_reporting(E_ALL);
 
-  echo "<p>In progress.</p>";
-
   // set up the database connection object
   $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
   // check for error
   if (!$conn) { die("Could not connect: " . mysqli_error()); }
 
+  echo "<p>no errors.</p>";
+
   // get fields submitted from form by post method
   $providedUsername = $_POST["username"];
   $providedPassword = $_POST["password"];
 
+  echo "received: <br><br><br><br><br><br><br>" . $_POST["username"] . $_POST["password"];
+
   // get the username - password combinations from the proj_Users table in the database
-  $query = "SELECT username, pword FROM proj_Users";
+  $query = "SELECT username, pword FROM proj_Users;";
   $result = mysqli_query($conn, $query);
 
   // check for error
-  if (!$result) { die("Query on database failed.") }
+  if (!$result) { die("Query on database failed."); }
 
   // have variable holding whether a username - password combination from database has been found which matches
   // the provided username - password combination, and try to find match in associative array
   $exists = false;
 
   echo "<p>Entering the while loop now.</p>";
-
+/*
   while ($row = mysqli_fetch_row($result)) {
     if ($row[0] === $providedUsername) {
       if ($row[1] === $providedPassword) {
@@ -92,7 +94,7 @@
       }
     }
   }
-
+*/
   echo "<p>At the end of the while loop, exists is: " . $exists . "</p>";
 
   // free result set
@@ -100,6 +102,7 @@
 
   // close connection
   mysqli_close($conn);
+
 
   // print outcome and possibly set login cookie depending on whether the username - password combo exists
   if ($exists == true) {
@@ -111,7 +114,7 @@
     echo "<p>Sign up for a new account on the sign up page: <a href='signup.php'>Sign up</a></p>";
     echo "<br><br>";
     echo "<p><a href='welcome.php'>Back to welcome page</a></p>";
-  } */
+  }
 ?>
 
 </body>
