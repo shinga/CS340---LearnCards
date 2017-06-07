@@ -75,13 +75,7 @@
   $thisuser = "pokemonmaster";
 
   // form the query
-  // $query = "SELECT dName AS 'Deck Name', dDesc AS 'Deck Description', dLanguage AS 'Deck Language' FROM proj_Deck  WHERE creator='" . $thisuser . "';";
-  $query = "INSERT INTO proj_Deck (dID, dName, dDesc, dAccess, dLanguage, creator) VALUES
-  (7, 'My pokemon names', 'I love japanese', 'public', 'japanese', 'pokemonmaster'),
-  (8, 'Brocks pokemon names', 'He loves japanese women', 'public', 'japanese', 'pokemonmaster'),
-  (9, 'My friends names', 'These are in spanish', 'public', 'german', 'pokemonmaster'),
-  (10, 'Pikachus first words', 'Babychu', 'public', 'english', 'pokemonmaster'),
-  (12, 'Animals', 'They are like pokemon but not', 'public', 'german', 'pokemonmaster') ;";
+  $query = "SELECT dName AS 'Deck Name', dDesc AS 'Deck Description', dLanguage AS 'Deck Language' FROM proj_Deck  WHERE creator='" . $thisuser . "';";
 
   // get result from querying the database`
   $result = mysqli_query($conn, $query);
